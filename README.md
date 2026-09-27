@@ -1,0 +1,1 @@
+# college-ops-copilot-core
