@@ -1,0 +1,10 @@
+{
+  "ticket_id": "T-100",
+  "category": "exam",
+  "fields": {
+    "student_id": "S-1",
+    "course_code": "DSA"
+  },
+  "expected_office": "examinations",
+  "expected_outcome": "ROUTE"
+}
