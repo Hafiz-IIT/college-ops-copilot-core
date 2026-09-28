@@ -1,17 +1,15 @@
 # College Ops Copilot Core
 
-> **Route student administrative requests with explicit evidence requirements, ownership, and SLA hints.**
+> Administrative college-operations copilot core for request classification, evidence checking, office routing and SLA hints.
 
-The older College AI Copilot / ERP ideas covered a huge surface area. This repository narrows them to a defensible operations problem: classify a student administrative request, check required information, identify the responsible office, and expose missing evidence instead of hallucinating resolution.
+## Status
+**Reproducible prototype** with executable code, tests, CI, architecture, evaluation and roadmap documentation.
 
-## Implemented
-- administrative request categories
-- office routing rules
-- required-field checks
-- missing-information response
-- SLA hints
-- ticket event history
-- ROUTE/ASK outcome
+## Problem
+Student administrative requests are often delayed because the wrong office receives incomplete information. A routing core can surface required fields before handoff.
+
+## Architecture
+Student request → administrative category → required-field check → destination office + SLA → ASK or ROUTE → audit event.
 
 ## Run
 ```bash
@@ -19,23 +17,29 @@ python -m unittest discover -s tests -v
 python college_ops_copilot_core.py
 ```
 
-## Repository map
-- `college_ops_copilot_core.py` — core implementation
-- `tests/` — deterministic tests
-- `examples/` — example request
-- `docs/architecture.md` — architecture
-- `docs/research-agenda.md` — experiments and research lineage
-- `STATUS.md` — exact claims boundary
-- `CITATION.cff` — citation metadata
-
-## Pipeline
-**student request → category → required fields → missing-info check → office owner → SLA → route/ask**
+## Implemented
+- Administrative category rules
+- Required-document/field checks
+- Office routing
+- SLA hints
+- ASK/ROUTE outcome
+- Unknown-category handling
+- Audit events
+- Tests and CI
 
 ## Research lineage
-This grows out of the earlier College AI Copilot/ERP and education-system capstone discussions while avoiding claims about a full student-information platform.
+- *Blockchain-Enhanced Education Ecosystems*
+- *Adaptive Learning Platforms with Multimodal Interfaces*
+- *Human-Centered AI Design for Inclusive Digital Platforms*
 
-## Evaluation direction
-Generate balanced and ambiguous request sets; measure correct office routing, missing-field detection, unknown-category behavior, and rule coverage.
+## Evaluation
+Tests cover complete requests, missing information and unknown categories.
 
-## Maturity
-**Research prototype.** Administrative prototype only. No real student records, admissions decisions, grading, financial aid, institutional integration, or deployed ERP is claimed.
+## Limitations
+- No student database
+- No admissions decision logic
+- No academic grading logic
+- No production ERP integration
+
+## License
+MIT.

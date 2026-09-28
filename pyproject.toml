@@ -1,0 +1,14 @@
+[build-system]
+requires=["setuptools>=68"]
+build-backend="setuptools.build_meta"
+
+[project]
+name="college-ops-copilot-core"
+version="0.1.0"
+description="Administrative college-operations copilot core for request classification, evidence checking, office routing and SLA hints."
+requires-python=">=3.10"
+license={text="MIT"}
+authors=[{name="Syed Hafiz Ali"}]
+
+[tool.setuptools]
+py-modules=["college_ops_copilot_core"]
