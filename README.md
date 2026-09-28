@@ -43,3 +43,7 @@ Tests cover complete requests, missing information and unknown categories.
 
 ## License
 MIT.
+
+## Extended implementation
+
+- `service_catalog.py` moves administrative routing rules into a configurable service catalog instead of hard-coding every workflow.
