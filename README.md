@@ -1,49 +1,48 @@
 # College Ops Copilot Core
 
-> Administrative college-operations copilot core for request classification, evidence checking, office routing and SLA hints.
+<p align="center"><strong>Evidence-Aware Administrative Routing</strong><br/><sub>Classify requests, identify missing information, route to the right office.</sub></p>
 
-## Status
-**Reproducible prototype** with executable code, tests, CI, architecture, evaluation and roadmap documentation.
+<p align="center"><img src="https://img.shields.io/badge/status-reproducible%20prototype-blue" alt="Prototype"/> <img src="https://img.shields.io/badge/focus-administrative%20AI-orange" alt="Administrative AI"/></p>
 
-## Problem
-Student administrative requests are often delayed because the wrong office receives incomplete information. A routing core can surface required fields before handoff.
+## Question
 
-## Architecture
-Student request → administrative category → required-field check → destination office + SLA → ASK or ROUTE → audit event.
+**Can a college operations assistant avoid routing incomplete requests to the wrong office?**
 
-## Run
-```bash
-python -m unittest discover -s tests -v
-python college_ops_copilot_core.py
+```
+Student request
+    ↓
+Category recognition
+    ↓
+Required-field check
+    ├── ASK
+    └── ROUTE
+          ↓
+      Office + SLA
 ```
 
+## Try it
+
+```bash
+python college_ops_copilot_core.py
+python -m unittest discover -s tests -v
+```
+
+`service_catalog.py` makes routing rules configurable rather than hard-coded into one workflow.
+
 ## Implemented
-- Administrative category rules
-- Required-document/field checks
-- Office routing
+
+- administrative categories
+- required-field checks
+- office routing
 - SLA hints
-- ASK/ROUTE outcome
-- Unknown-category handling
-- Audit events
-- Tests and CI
+- ASK / ROUTE outcomes
+- unknown-category handling
+- audit events
+- configurable service catalog
+- deterministic CI
 
-## Research lineage
-- *Blockchain-Enhanced Education Ecosystems*
-- *Adaptive Learning Platforms with Multimodal Interfaces*
-- *Human-Centered AI Design for Inclusive Digital Platforms*
+## Boundary
 
-## Evaluation
-Tests cover complete requests, missing information and unknown categories.
+Administrative workflow prototype only. It does not make academic, legal, financial or disciplinary decisions.
 
-## Limitations
-- No student database
-- No admissions decision logic
-- No academic grading logic
-- No production ERP integration
-
-## License
-MIT.
-
-## Extended implementation
-
-- `service_catalog.py` moves administrative routing rules into a configurable service catalog instead of hard-coding every workflow.
+Related: [Hospital Operations Helpdesk](https://github.com/Hafiz-IIT/hospital-ops-helpdesk) · [Agency QA Orchestrator](https://github.com/Hafiz-IIT/agency-qa-orchestrator)
