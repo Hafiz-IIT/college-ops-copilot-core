@@ -24,6 +24,17 @@ class Ticket:
     fields: dict[str, str]
     events: list[str] = field(default_factory=list)
 
+    def __post_init__(self):
+        if not isinstance(self.ticket_id, str) or not self.ticket_id.strip():
+            raise ValueError("ticket_id is required")
+        if not isinstance(self.category, str) or not self.category.strip():
+            raise ValueError("category is required")
+        if not isinstance(self.fields, dict) or any(
+            not isinstance(key, str) or not key.strip() or not isinstance(value, str)
+            for key, value in self.fields.items()
+        ):
+            raise ValueError("ticket fields must map non-empty keys to string values")
+
     def assess(self) -> dict:
         if self.category not in OFFICE_RULES:
             return {
@@ -34,7 +45,7 @@ class Ticket:
             }
 
         office, required, sla = OFFICE_RULES[self.category]
-        missing = sorted(key for key in required if not self.fields.get(key))
+        missing = sorted(key for key in required if not self.fields.get(key, "").strip())
         if missing:
             self.events.append("missing:" + ",".join(missing))
             return {
