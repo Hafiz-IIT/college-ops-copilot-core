@@ -19,6 +19,15 @@ class CollegeOpsTests(unittest.TestCase):
         self.assertEqual(result["outcome"], "ASK")
         self.assertIsNone(result["office"])
 
+    def test_whitespace_only_required_fields_are_missing(self):
+        result = Ticket("1", "exam", {"student_id": "S", "course_code": "   "}).assess()
+        self.assertEqual(result["outcome"], "ASK")
+        self.assertEqual(result["missing"], ["course_code"])
+
+    def test_invalid_ticket_identity_is_rejected(self):
+        with self.assertRaises(ValueError):
+            Ticket("", "exam", {})
+
 
 if __name__ == "__main__":
     unittest.main()
