@@ -29,6 +29,12 @@ class Ticket:
             not isinstance(k, str) or not isinstance(v, str) for k, v in self.fields.items()
         ):
             raise ValueError("fields must map strings to strings")
+        if not isinstance(self.events, list) or any(not isinstance(event, str) for event in self.events):
+            raise ValueError("events must be a list of strings")
+        # Keep caller-owned containers from mutating ticket state behind its
+        # validation and idempotent event-recording logic.
+        self.fields = dict(self.fields)
+        self.events = list(self.events)
 
     def assess(self) -> dict:
         if self.category not in OFFICE_RULES:
